@@ -32,4 +32,4 @@ class Book(Base):
     isbn: Mapped[str]
     catalog_id: Mapped[int] = mapped_column(ForeignKey("catalogs.id", ondelete="CASCADE"))
     
-    catalog: Mapped["Catalog"] = relationship("catalogs", back_populates="books")
+    catalog: Mapped["Catalog"] = relationship( back_populates="books")

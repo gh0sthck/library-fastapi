@@ -15,4 +15,4 @@ class Catalog(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(90))
     
-    books: Mapped[List["Book"]] = relationship("books", back_populates="catalog")
+    books: Mapped[List["Book"]] = relationship(back_populates="catalog")

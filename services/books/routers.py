@@ -1,6 +1,11 @@
-from fastapi import APIRouter
+from typing import Annotated
 
-from .schemas import Book, Author
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from database import get_async_session
+from .schemas import Book, Author, BookCreate
+from .books import create_book as create_book_func
 
 
 book_router = APIRouter(prefix="/books", tags=["Books"])
@@ -28,3 +33,11 @@ async def get_id_book(book_id: int) -> dict[str, int]:
 async def get_catalog_books(catalog_id: int) -> dict[str, int]:
     """Return all books by catalog id."""
     return {"test": 200}
+
+
+@book_router.post("/create/")
+async def create_book(
+    book: Annotated[BookCreate, Depends()],
+    async_session: AsyncSession = Depends(get_async_session), 
+    ) -> BookCreate:
+    return await create_book_func(book=book, session=async_session)

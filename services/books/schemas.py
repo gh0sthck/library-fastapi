@@ -3,8 +3,6 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from services.catalogs.schemas import Catalog
-
 
 class Author(BaseModel):
     id: int
@@ -18,8 +16,17 @@ class Author(BaseModel):
 class Book(BaseModel):
     id: int
     title: str = Field(max_length=90)
-    author: Author
+    author_id: int
     description: str = Field(max_length=256)
     publish_date: datetime.datetime
     isbn: str
-    catalog: Catalog
+    catalog_id: int
+
+
+class BookCreate(BaseModel):
+    title: str = Field(max_length=90)
+    author_id: int
+    description: str = Field(max_length=256)
+    publish_date: datetime.datetime
+    isbn: str
+    catalog_id: int
