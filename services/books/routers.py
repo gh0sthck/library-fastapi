@@ -22,3 +22,9 @@ async def get_author_books() -> dict[str, int]:
 async def get_id_book(book_id: int) -> dict[str, int]:
     """Return specific book by book id."""
     return {"test": 200}
+
+
+@book_router.get("/{catalog_id}/")
+async def get_catalog_books(catalog_id: int) -> dict[str, int]:
+    """Return all books by catalog id."""
+    return {"test": 200}
