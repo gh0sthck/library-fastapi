@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "library-fastapi"
+version = "0.1.0"
+description = "Demo library project with fastapi"
+authors = ["gh0st <maratka2202@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["all"], version = "^0.110.1"}
+pydantic-settings = "^2.2.1"
+alembic = "^1.13.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
