@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     
 
 class Author(Base):
-    __tablename__ = "author"
+    __tablename__ = "authors"
     
     id: Mapped[int] = mapped_column(primary_key=True)
     first_name: Mapped[str] = mapped_column(String(128))
@@ -26,10 +26,10 @@ class Book(Base):
     
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(90), unique=True)
-    author_id: Mapped[int] = mapped_column(ForeignKey("Author.id", ondelete="CASCADE"))
+    author_id: Mapped[int] = mapped_column(ForeignKey("authors.id", ondelete="CASCADE"))
     description: Mapped[str] = mapped_column(String(256))
     publish_date: Mapped[datetime.datetime]
     isbn: Mapped[str]
-    catalog_id: Mapped[int] = mapped_column(ForeignKey("Catalog.id", ondelete="CASCADE"))
+    catalog_id: Mapped[int] = mapped_column(ForeignKey("catalogs.id", ondelete="CASCADE"))
     
-    catalog: Mapped["Catalog"] = relationship("Catalog", back_populates="books")
+    catalog: Mapped["Catalog"] = relationship("catalogs", back_populates="books")
