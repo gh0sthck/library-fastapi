@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
 from settings import setting
+from services import register_routers
 
 
 @asynccontextmanager
@@ -20,3 +21,5 @@ app = FastAPI(
     
     lifespan=project_lifespan,
 )
+
+register_routers(app)
