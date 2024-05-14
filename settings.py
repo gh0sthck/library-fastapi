@@ -1,20 +1,18 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from os import getenv
+from pydantic_settings import BaseSettings
 
 
 class DatabaseSetting(BaseSettings):
-    USER: str
-    PASSWORD: str
-    HOST: str
-    NAME: str
-    PORT: str
+    USER: str = getenv("DB_USER")
+    PASSWORD: str = getenv("DB_PASSWORD")
+    HOST: str = getenv("DB_HOST")
+    NAME: str = getenv("DB_NAME")
+    PORT: int = int(getenv("DB_PORT"))
     
     @property
     def dsn(self) -> str:
         return \
             f"postgresql+asyncpg://{self.USER}:{self.PASSWORD}@{self.HOST}:{self.PORT}/{self.NAME}"
-
-    model_config = SettingsConfigDict(env_file=".env")
-
 
 
 class Setting(BaseSettings):

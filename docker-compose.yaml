@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  fastapi:
+    build: .
+    container_name: fastapi
+    volumes:
+      - ./:/library/
+    ports:
+      - 8000:8000
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=librarydb
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16.2-alpine3.19
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+    environment:
+      - POSTGRES_DB=librarydb
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+volumes:
+  pgdata:
+    

@@ -1,5 +1,4 @@
 import datetime
-from typing import TYPE_CHECKING
 from database import Base
 
 from sqlalchemy import ForeignKey, String
