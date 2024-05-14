@@ -18,10 +18,10 @@ class DatabaseSetting(BaseSettings):
 
 
 class Setting(BaseSettings):
-    app_name: str = "My Library API"
+    app_name: str = "The Library API"
     debug: bool = True
-    description: str = "Easy and Fast api to control library"
-    summary: str = "Easy api to library"
+    description: str = "Easy and Fast API to control books and visits.s"
+    summary: str = "Api to library"
     
     db: DatabaseSetting = DatabaseSetting()
     

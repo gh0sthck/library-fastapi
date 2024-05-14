@@ -5,9 +5,7 @@ from database import Base
 from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-
-if TYPE_CHECKING:
-    from services.catalogs.models import Catalog
+from services.catalogs.models import Catalog
     
 
 class Author(Base):
@@ -32,4 +30,4 @@ class Book(Base):
     isbn: Mapped[str]
     catalog_id: Mapped[int] = mapped_column(ForeignKey("catalogs.id", ondelete="CASCADE"))
     
-    catalog: Mapped["Catalog"] = relationship( back_populates="books")
+    catalog: Mapped["Catalog"] = relationship(back_populates="books")
